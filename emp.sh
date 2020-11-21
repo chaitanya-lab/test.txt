@@ -8,11 +8,12 @@ else
 fi
 isPartTime=1
 isFullTime=2
-Totalsalary=0
 EmpRateperHr=20
 WorkingDays=20
-for ((day=1;day<=WorkingDays;day++))
+maxHrsInmonth=100
+while [[ $TotalempHr -le $maxHrsInmonth && $TotalWorkingDay -le $WorkingDays ]]
 do
+        (($TotalWorkingDay+1))
         empcheck=$(($RANDOM%3))
         case $empcheck in
                         $isFullTime)
@@ -27,11 +28,11 @@ do
                                 ;;
 
                 esac
-        salary=$(($empHrs*$EmpRateperHr))
- Totalsalary=$(($Totalsalary+$salary))
+        TotalempHr=$(($TotalempHr+$empHrs))
 done
 
+salary=$(($TotalempHr*$EmpRateperHr))
 
-echo "totoal salary : $Totalsalary"
 
+echo "totoal salary : $salary"
 
